@@ -163,12 +163,13 @@ class _MainLayoutState extends State<MainLayout> {
 
   Widget _buildNavItem(BuildContext context, {required IconData icon, required String label, required String route}) {
     final isSelected = widget.currentRoute == route;
+    final isDesktop = MediaQuery.of(context).size.width > 800;
     
     return InkWell(
       onTap: () {
         if (widget.currentRoute != route) {
           Navigator.of(context).pushReplacementNamed(route);
-        } else if (!key.toString().contains('Desktop')) {
+        } else if (!isDesktop) {
            // Close drawer on mobile if same route
            Navigator.of(context).pop(); 
         }
